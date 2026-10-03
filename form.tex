@@ -1,0 +1,93 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{graphicx}  % for SVG logo
+\usepackage{tabularx}  % for tables
+\usepackage{amssymb}   % \square
+\usepackage{enumitem}  % itemize
+\usepackage{calc}      % calculating sizes
+\usepackage{svg}       % svg
+\usepackage[margin=1in,top=0.5in]{geometry}         % reduce margins
+\usepackage[pdftex, pdfauthor={Atemu},  % set pdf metadata
+            pdftitle={systemd Fuck-up Assessment Form}]{hyperref}
+
+\renewcommand{\familydefault}{\sfdefault}  % sans serif
+\pagenumbering{gobble}                     % no page numbers
+\setlength{\parindent}{0pt}                % disable paragraph indent
+
+\begin{document}
+\vspace*{1.5em}
+
+\begin{center}
+\includesvg[width=0.6\textwidth,inkscapearea=page]{systemd-light.svg}\\[0.75em]
+{\LARGE Fuck-up Assessment Form}\\[1.5em]
+\texttt{Welcome to systemd, tell us how you fucked up.}
+\end{center}
+
+\vspace{1em}
+\textbf{Github nickname:} \dotfill
+\ \textbf{Date and time of fuck-up:} \dotfill
+\vspace{0.5em}
+
+\def\arraystretch{1.5}  % increase vertical table size
+\begin{tabularx}{\textwidth}{|lllX|}
+\hline
+\multicolumn{4}{|l|}{\textbf{What emotions were going through your head upon fucking up?} (check all that apply)} \\ \hline
+\(\square\) Panic &
+\(\square\) Remorse &
+\(\square\) Amplified hackernews elitism &
+\(\square\) Fear, uncertainty and doubt \\
+
+\(\square\) Nerdrage &
+\(\square\) Wah wah wah &
+\(\square\) Desire to buy a Chromebook &
+\(\square\) Other (please specify): \dotfill \\ \hline
+\end{tabularx}
+
+\vspace{0.5em}
+
+% there's probably a way easier method to align the two
+% "I (didn't) listen(ed) to" points but this works
+\newlength{\listenedwidth}
+\newlength{\didntlistenwidth}
+\settowidth{\listenedwidth}{I listened to}
+\settowidth{\didntlistenwidth}{I didn't listen to}
+
+\begin{tabularx}{\textwidth}{|X|}
+\hline
+\textbf{What initially caused your fuck-up to occur?} (check all that apply) \\ \hline
+\begin{minipage}{\linewidth}
+\vspace{0.5em}
+\begin{itemize}[label={\(\square\)},nosep,leftmargin=*]
+    \item I use Arch, btw
+    \item I read Lennart's latest blog post and got overly excited
+    \item I enabled systemd-machined and russian hackers took over my laptop, smart thermostat and dishwasher, send help
+    \item I entered the wrong date-of-birth in systemd-userdb and now my browser will only show the Teletubbies in a loop
+    \item I used ZFS for my root partition as I believed it would be better than homed
+    \item I thought all that TPM2 stuff would actually work
+    \item I don't know, but it wasn't my fault
+    \item Other (please specify): \dotfill
+\end{itemize}
+\vspace{0.5em}
+\end{minipage} \\ \hline
+\end{tabularx}
+
+\vspace{0.5em}
+
+\begin{tabularx}{\textwidth}{|lllX|}
+\hline
+\multicolumn{4}{|l|}{\textbf{What have you tried so far to remedy your fuck-up?} (check all that apply)} \\ \hline
+\(\square\) Rebooting &
+\(\square\) Reinstalling &
+\(\square\) Switching to GNU/Shepherd \\
+
+\(\square\) Crying &
+\(\square\) Crying on Matrix &
+\multicolumn{2}{l|}{\(\square\) Other (please specify): \dotfill} \\ \hline
+\end{tabularx}
+
+\vspace*{\fill}
+\begin{center}
+Please return completed form to \texttt{/dev/null} in order for your fuck-up to be assessed by a professional.
+\end{center}
+
+\end{document}

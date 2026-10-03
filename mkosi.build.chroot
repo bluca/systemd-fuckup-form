@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+make
+install -m 0644 form.pdf "$BUILDDIR/form.pdf"
