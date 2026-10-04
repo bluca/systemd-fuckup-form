@@ -1,0 +1,40 @@
+name: Build and release PDF
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out the source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up mkosi
+        uses: systemd/mkosi@ecf7f5702bb2052b7a69cab3fe7d37bc3b9ad77b # v27.1
+
+      - name: Build the PDF
+        run: mkosi build
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          version="$(date -u +'%Y-%m-%d-%H-%M')"
+          gh release create "$version" mkosi.output/form.pdf \
+            --target "$GITHUB_SHA" \
+            --title "$version" \
+            --notes "PDF built from commit $GITHUB_SHA."
